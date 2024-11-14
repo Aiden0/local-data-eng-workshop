@@ -1,0 +1,10 @@
+version: 2
+
+sources:
+  - name: main
+    description: Raw data inserted into the database
+    schema:
+    tables:
+      - name: raw_customers
+      - name: raw_orders
+      - name: raw_payments
