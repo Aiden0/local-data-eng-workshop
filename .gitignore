@@ -11,3 +11,5 @@ env/
 **/*.duckdb.wal
 airflow/
 evidence/
+temp_data/
+jaffle_shop.db

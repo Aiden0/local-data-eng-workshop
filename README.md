@@ -1,9 +1,6 @@
-https://airflow.apache.org/docs/apache-airflow/stable/start.html
-https://github.com/dbt-labs/jaffle_shop_duckdb/tree/duckdb
-
 # Testing dbt project: `jaffle_shop`
 
-`jaffle_shop` is a fictional ecommerce store. This dbt project transforms raw data from an app database into a customers and orders model ready for analytics.
+`jaffle_shop` is a fictional ecommerce store. This project pulls data from a bucket into sqlite db, transforms raw data from an app database into a customers and orders model ready for analytics. It then visualizes the data in grafana.
 
 <details>
 <summary>
@@ -14,16 +11,7 @@ https://github.com/dbt-labs/jaffle_shop_duckdb/tree/duckdb
 
 What this repo _is_:
 
-- A self-contained playground dbt project, useful for testing out scripts, and communicating some of the core dbt concepts.
-
-What this repo _is not_:
-
-- A tutorial — check out the [Getting Started Tutorial](https://docs.getdbt.com/tutorial/setting-up) for that. Notably, this repo contains some anti-patterns to make it self-contained, namely the use of seeds instead of sources.
-- A demonstration of best practices — check out the [dbt Learn Demo](https://github.com/dbt-labs/dbt-learn-demo) repo instead. We want to keep this project as simple as possible. As such, we chose not to implement:
-  - our standard file naming patterns (which make more sense on larger projects, rather than this five-model project)
-  - a pull request flow
-  - CI/CD integrations
-- A demonstration of using dbt for a high-complex project, or a demo of advanced features (e.g. macros, packages, hooks, operations) — we're just trying to keep things simple here!
+- A self-contained playground end to end data engineering project with airflow, dbt project, useful for testing out scripts, and communicating some of the core engineering concepts.
 
 </details>
 
@@ -272,10 +260,10 @@ dags_folder = /path/to/this/repo/local-data-eng-workshop/dags
 ```
 
 then go into file `/path/to/this/repo/local-data-eng-workshop/dags/upload_files.py`
-and replace the variable `DUCKDB_CONN_ID` with repo path plus the name `jaffle_shop.duckdb` i.e
+and replace the variable `RepoBasePath` with repo path i.e
 
 ```python
-DUCKDB_CONN_ID = "/path/to/this/repo/local-data-eng-workshop/jaffle_shop.duckdb"
+RepoBasePath = "/path/to/this/repo/local-data-eng-workshop"
 ```
 
 Then restart airflow
@@ -284,7 +272,7 @@ Then restart airflow
 airflow standalone
 ```
 
-and search for the dag gcs_to_duck_db and run it and monitor it on localhost:8080
+and search for the dag gcs_to_db and run it and monitor it on localhost:8080
 
 1. Now we are going to run out dbt models, and test the output of the models using the [dbt build](https://docs.getdbt.com/reference/commands/build) command:
 
@@ -292,7 +280,9 @@ and search for the dag gcs_to_duck_db and run it and monitor it on localhost:808
    dbt build
    ```
 
-1. Query the data:
+1. To query the data best best is install the sqlite viewer extension in vscode and open the file `jaffle_shop.db` in the root of this repo.
+
+<!-- 1. Query the data:
 
    Launch a DuckDB command-line interface (CLI):
 
@@ -318,6 +308,7 @@ and search for the dag gcs_to_duck_db and run it and monitor it on localhost:808
    ```shell
    echo 'select * from customers where customer_id = 42' | duckcli jaffle_shop.duckdb
    ```
+   s -->
 
 1. Generate and view the documentation for the project:
 
@@ -326,7 +317,17 @@ and search for the dag gcs_to_duck_db and run it and monitor it on localhost:808
    dbt docs serve
    ```
 
-1. Now to visualize the data, go to vsc code extesntions and search for evidence
+1. Now to visualize the data, go to grafana site [here](https://grafana.com/docs/grafana/latest/setup-grafana/installation/) and install grafana.
+
+When yo ustart the service, go to your browser and type `localhost:3000` and login with the default username and password `admin` and `admin`. Then add a new data source, select sqlite and input the path to the duckdb file i.e `/path/to/this/repo/local-data-eng-workshop/jaffle_shop.db` and save and test the connection.
+
+Then go to the explore tab and input the query `select * from customers` and you should see the data.
+
+##
+
+Sticked together using following links:
+https://airflow.apache.org/docs/apache-airflow/stable/start.html
+https://github.com/dbt-labs/jaffle_shop_duckdb/tree/duckdb
 
 ## Browsing the data
 

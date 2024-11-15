@@ -42,11 +42,11 @@ configobj==5.0.8
     # via
     #   cli-helpers
     #   duckcli
-dbt-core==1.8.1
+dbt-core==1.5.11
     # via
     #   -r requirements.in
     #   dbt-duckdb
-dbt-duckdb==1.8.1
+# dbt-duckdb==1.8.1
     # via -r requirements.in
 dbt-extractor==0.5.1
     # via dbt-core
@@ -54,9 +54,9 @@ dbt-semantic-interfaces==0.5.1
     # via dbt-core
 diff-cover==8.0.3
     # via sqlfluff
-duckcli==0.2.1
+# duckcli==0.2.1
     # via -r requirements.in
-duckdb==0.10.0
+# duckdb==0.10.0
     # via
     #   dbt-duckdb
     #   duckcli
@@ -215,3 +215,5 @@ zipp==3.17.0
     #   importlib-metadata
     #   importlib-resources
 gdown==5.2.0
+dbt-sqlite==1.5.0
+setuptools==75.5.0
