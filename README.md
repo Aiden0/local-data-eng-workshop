@@ -2,18 +2,11 @@
 
 `jaffle_shop` is a fictional ecommerce store. This project pulls data from a bucket into sqlite db, transforms raw data from an app database into a customers and orders model ready for analytics. It then visualizes the data in grafana.
 
-<details>
-<summary>
-
 ## What is this repo?
-
-</summary>
 
 What this repo _is_:
 
 - A self-contained playground end to end data engineering project with airflow, dbt project, useful for testing out scripts, and communicating some of the core engineering concepts.
-
-</details>
 
 <details>
 <summary>
@@ -29,19 +22,6 @@ The raw data consists of customers, orders, and payments, with the following ent
 ![Jaffle Shop ERD](/etc/jaffle_shop_erd.png)
 
 </details>
-
-## Why should I care about this repo?
-
-If you're just starting your cloud data warehouse journey and are hungry to get started with dbt before your organization officially gets a data warehouse, you should check out this repo.
-
-If you want to run 28 SQL operations with dbt in less than `1 second`, for free, and all on your local machine, you should check out this repo.
-![dbt_performance](images/dbt_performance.png)
-
-If you want an adrenaline rush from a process that used to take dbt newcomers `1 hour` and is now less than `1 minute`, you should check out this repo.
-
-![dbt_full_deploy_commands](images/dbt_full_deploy_commands.png)
-
-[Verified GitHub Action on dbt Performance](https://github.com/dbt-labs/jaffle_shop_duckdb/runs/7141529753?check_suite_focus=true#step:4:306)
 
 ## Running this project
 
@@ -64,7 +44,7 @@ git clone https://github.com/dbt-labs/jaffle_shop_duckdb.git
    cd jaffle_shop_duckdb
    ```
 
-1. Install dbt and DuckDB in a virtual environment.
+1. Install dbt and airflow in a virtual environment.
 
    Expand your shell below:
 
